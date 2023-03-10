@@ -9,6 +9,6 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 	</http:listener-config>
 	<flow name="dmoFlow" doc:id="1f703478-e776-43dd-81d5-29c612bfcbcc" >
 		<http:listener doc:name="Listener" doc:id="db499e79-5f80-497d-8943-d4583008c429" config-ref="HTTP_Listener_config" path="/test"/>
-		<logger level="INFO" doc:name="Logger" doc:id="b81da0af-aafe-4059-bd72-dc75d93c8748" message='"testtttttttttttttttttttttttttttt"'/>
+		<logger level="INFO" doc:name="Logger" doc:id="b81da0af-aafe-4059-bd72-dc75d93c8748" message='"testtttttttttttttttttttttttt"'/>
 	</flow>
 </mule>
