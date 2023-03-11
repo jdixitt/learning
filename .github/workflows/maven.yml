@@ -10,11 +10,9 @@ name: Build-dev
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build:
@@ -36,6 +34,54 @@ jobs:
       with:
         java-version: 1.8
 
-    # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
-    - name: Update dependency graph
-      uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
+    - name: Print effective-settings (optional)
+      run: mvn help:effective-settings
+    
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+    
+    - name: Stamp artifact file name with commit hash
+      run: |
+        artifactName1=$(ls target/*.jar | head -1)
+        commitHash=$(git rev-parse --short "$GITHUB_SHA")
+        artifactName2=$(ls target/*.jar | head -1 | sed "s/.jar/-$commitHash.jar/g")
+        mv $artifactName1 $artifactName2
+    
+    - name: Upload artifact 
+      uses: actions/upload-artifact@master
+      with:
+          name: artifacts
+          path: target/*.jar
+        
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+    steps:    
+    
+    - uses: actions/checkout@v2
+    
+    - uses: actions/cache@v1
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+    
+    - uses: actions/download-artifact@master
+      with:
+        name: artifacts
+    
+    - name: Deploy to Sandbox
+      env:
+        USERNAME: ${{ secrets.USERNAME }}
+        PASSWORD: ${{ secrets.PASSWORD }}
+      run: |
+        artifactName=$(ls *.jar | head -1)
+        mvn deploy -DmuleDeploy \
+         -Dmule.artifact=$artifactName \
+         -Danypoint.username="$USERNAME" \
+         -Danypoint.password="$PASSWORD" \
+         -DskipTests
