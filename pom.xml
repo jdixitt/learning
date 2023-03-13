@@ -30,19 +30,19 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
-  				<cloudHubDeployment>
-  				<uri>https://anypoint.mulesoft.com</uri>
-  				<muleVersion>4.4.0</muleVersion>
-  				<username>dixitj</username>
-  				<password>Feb.india@23</password>
-  				<applicationName>demo-mule-app-cicd</applicationName>
-  				<environment>SANDBOX</environment>
-  				<workerType>MICRO</workerType>
-  				<region>eu1</region>
-  				<workers>1</workers>
-  				<objectStoreV2>true</objectStoreV2>
-  				</cloudHubDeployment>
-  				</configuration>
+					<cloudHubDeployment>
+						<uri>https://eu1.anypoint.mulesoft.com</uri>
+						<muleVersion>4.4.0</muleVersion>
+						<username>dixitj</username>
+						<password>Feb.india@23</password>
+						<applicationName>demo-mule-app-cicd</applicationName>
+						<environment>SANDBOX</environment>
+						<workerType>MICRO</workerType>
+						<region>eu1</region>
+						<workers>1</workers>
+						<objectStoreV2>true</objectStoreV2>
+					</cloudHubDeployment>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
@@ -64,6 +64,12 @@
 			<groupId>org.mule.connectors</groupId>
 			<artifactId>mule-sockets-connector</artifactId>
 			<version>1.2.3</version>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>com.mulesoft.connectors</groupId>
+			<artifactId>mule-servicenow-connector</artifactId>
+			<version>6.13.0</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
 	</dependencies>
