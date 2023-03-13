@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.mycompany</groupId>
+	<groupId>f40cf627-c038-4110-8f21-58618c66437a</groupId>
 	<artifactId>dmo</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
@@ -31,14 +31,14 @@
 				<extensions>true</extensions>
 				<configuration>
 					<cloudHubDeployment>
-						<uri>https://eu1.anypoint.mulesoft.com</uri>
+						<uri>https://anypoint.mulesoft.com</uri>
 						<muleVersion>4.4.0</muleVersion>
-						<username>dixitj</username>
+						<username>dixitjay11</username>			
 						<password>Feb.india@23</password>
 						<applicationName>demo-mule-app-cicd</applicationName>
 						<environment>SANDBOX</environment>
 						<workerType>MICRO</workerType>
-						<region>eu1</region>
+						<region>us-east-1</region>
 						<workers>1</workers>
 						<objectStoreV2>true</objectStoreV2>
 					</cloudHubDeployment>
