@@ -38,9 +38,9 @@ jobs:
       with:
         servers:  |
           [{
-            "id":"${{secrets.PLATFORM_ORGID",
-            "username":"${{secrets.PLATFORM_USERNAME",
-            "password":"${{secrets.PLATFORM_PASSWORD"
+            "id":"${{secrets.PLATFORM_ORGID}}",
+            "username":"${{secrets.PLATFORM_USERNAME}}",
+            "password":"${{secrets.PLATFORM_PASSWORD}}"
           
           }]          
 
