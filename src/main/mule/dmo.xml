@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
-	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+<mule xmlns:servicenow="http://www.mulesoft.org/schema/mule/servicenow" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/servicenow http://www.mulesoft.org/schema/mule/servicenow/current/mule-servicenow.xsd">
 	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="13278a72-fb18-467d-8b29-6988031a04bb" >
 		<http:listener-connection host="0.0.0.0" port="8081" />
 	</http:listener-config>
+	<servicenow:config name="ServiceNow_Config" doc:name="ServiceNow Config" doc:id="a49e5ca3-37b8-45ef-ae55-818e5261210e" >
+		<servicenow:basic-connection username="admin" password="G8TBUGW2SRqN" serviceAddress="https://nowlearning-nlinst00632866-001.lab.service-now.com" serviceNowVersion="SAN_DIEGO" />
+	</servicenow:config>
 	<flow name="dmoFlow" doc:id="1f703478-e776-43dd-81d5-29c612bfcbcc" >
 		<http:listener doc:name="Listener" doc:id="db499e79-5f80-497d-8943-d4583008c429" config-ref="HTTP_Listener_config" path="/test"/>
 		<logger level="INFO" doc:name="Logger" doc:id="b81da0af-aafe-4059-bd72-dc75d93c8748" message='"testtttttttttttttttttttttttt"'/>
